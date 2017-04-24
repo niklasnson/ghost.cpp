@@ -7,6 +7,7 @@ class Ghost
     struct buffert_t {
       std::string content;
       std::string title; 
+      std::string body; 
       std::map<std::string, int> keywords; 
       size_t words; 
     };
@@ -16,7 +17,9 @@ class Ghost
       buffert.words = words(buffert);
     }; 
 
-    void load_file(std::string filename, Ghost::buffert_t &buffert);
+    void load_file (std::string filename, Ghost::buffert_t &buffert);
+
+    std::string title (Ghost::buffert_t &buffert); 
 
     size_t words (Ghost::buffert_t &buffert); 
   private: 

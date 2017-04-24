@@ -28,6 +28,11 @@ Ghost::words (Ghost::buffert_t &buffert)
   return words; 
 }
 
+std::string 
+Ghost::title (Ghost::buffert_t &buffert) 
+{
+  return "hello"; 
+}
 
 int 
 main (int argc, char* argv[])
