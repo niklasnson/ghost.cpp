@@ -8,11 +8,11 @@ class Ghost
       std::string content;
       std::string title; 
       std::map<std::string, int> keywords; 
-      int size; 
+      size_t words; 
     };
     Ghost(){}; 
     void load_file(std::string filename, Ghost::buffert_t &buffert);
-
+    size_t words (Ghost::buffert_t &buffert); 
   private: 
 }; 
 

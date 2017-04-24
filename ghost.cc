@@ -16,11 +16,11 @@ Ghost::load_file (std::string filename, Ghost::buffert_t &buffert)
 }
 
 // count the words in the buffert. 
-int
+size_t
 Ghost::words (Ghost::buffert_t &buffert) 
 { 
-  int words = 0; 
-  for (int i = 0; i < buffert.content.lenght(); ++i) 
+  size_t words = 0; 
+  for (size_t i = 0; i < buffert.content.length(); ++i) 
   {
     if (buffert.content[i]==' ' && buffert.content[i+1] !=0) 
       ++words; 
@@ -40,8 +40,9 @@ main (int argc, char* argv[])
   Ghost ghost;
   Ghost::buffert_t buffert; 
   ghost.load_file(argv[1], buffert); 
+  buffert.words = ghost.words(buffert); 
   
   std::cout << buffert.content << std::endl; 
-  
+  std::cout << buffert.words << std::endl;  
   return 0; 
 }
