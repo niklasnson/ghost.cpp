@@ -37,10 +37,8 @@ main (int argc, char* argv[])
     std::cerr << "Usage: " << argv[0] << " filename " << std::endl; 
     return 1; 
   }
-  Ghost ghost;
   Ghost::buffert_t buffert; 
-  ghost.load_file(argv[1], buffert); 
-  buffert.words = ghost.words(buffert); 
+  Ghost ghost(argv[1], buffert);
   
   std::cout << buffert.content << std::endl; 
   std::cout << buffert.words << std::endl;  

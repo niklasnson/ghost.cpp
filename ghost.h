@@ -10,8 +10,14 @@ class Ghost
       std::map<std::string, int> keywords; 
       size_t words; 
     };
-    Ghost(){}; 
+
+    Ghost(std::string filename, Ghost::buffert_t &buffert){
+      load_file(filename, buffert);
+      buffert.words = words(buffert);
+    }; 
+
     void load_file(std::string filename, Ghost::buffert_t &buffert);
+
     size_t words (Ghost::buffert_t &buffert); 
   private: 
 }; 
