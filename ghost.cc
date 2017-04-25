@@ -1,7 +1,9 @@
 #include <iostream>
+#include <sstream>
 #include <string> 
 #include <fstream>
 #include <map>
+#include <vector>
 #include "ghost.h"
 
 // load a file into the buffert. 
@@ -10,27 +12,28 @@ Ghost::load_file (std::string filename, Ghost::buffert_t &buffert)
 {
   std::ifstream ifs(filename);
   ifs.seekg(0, std::ios::end);
-  buffert.content.reserve(ifs.tellg());
+  buffert.raw.reserve(ifs.tellg());
   ifs.seekg(0, std::ios::beg);
-  buffert.content.assign((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
+  buffert.raw.assign((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
 }
 
 // count the words in the buffert. 
-size_t
-Ghost::words (Ghost::buffert_t &buffert) 
+void
+Ghost::make_words (Ghost::buffert_t &buffert) 
 { 
-  size_t words = 0; 
-  for (size_t i = 0; i < buffert.content.length(); ++i) 
-  {
-    if (buffert.content[i]==' ' && buffert.content[i+1] !=0) 
-      ++words; 
+  // go over string, find substring, add substring to map_words 
+  std::istringstream iss(buffert.raw); 
+  std::string word; 
+  while (iss >> word) {
+    std::cout << word << std::endl; 
+    //++buffert.map_words(word);
   }
-  return words; 
 }
 
 std::string 
 Ghost::title (Ghost::buffert_t &buffert) 
 {
+  std::cout << buffert.raw << std::endl;
   return "hello"; 
 }
 
@@ -45,7 +48,7 @@ main (int argc, char* argv[])
   Ghost::buffert_t buffert; 
   Ghost ghost(argv[1], buffert);
   
-  std::cout << buffert.content << std::endl; 
-  std::cout << buffert.words << std::endl;  
+  std::cout << buffert.raw << std::endl; 
+  //std::cout << buffert.words << std::endl;  
   return 0; 
 }
